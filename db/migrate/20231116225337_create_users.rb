@@ -5,8 +5,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :last_name
       t.string :email
       t.string :password
-      t.string :password
-      t.string :confirmation
+      t.string :password_confirmation
       t.string :auth_token
       t.string :reset_password_token
 
