@@ -48,7 +48,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_16_225605) do
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
-    t.string "auth_token"
     t.string "reset_password_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
