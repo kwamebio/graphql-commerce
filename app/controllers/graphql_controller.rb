@@ -12,7 +12,8 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = {
       # Query context goes here, for example:
-      # current_user: current_user,
+      current_user: current_user,
+      request: request
     }
     result = MarketPlaceSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
@@ -43,10 +44,20 @@ class GraphqlController < ApplicationController
     end
   end
 
+    
   def handle_error_in_development(e)
     logger.error e.message
     logger.error e.backtrace.join("\n")
 
     render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
+  end
+
+  def current_user
+    token = request.headers['Authorization']
+    return nil if token.blank?
+    session = Session.find_by(token: token)
+    return :not_found if session.blank?
+    return :expired if session.expiration_date < Time.now
+    session.user
   end
 end
