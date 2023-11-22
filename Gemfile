@@ -12,6 +12,7 @@ gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 gem 'graphql', '~> 2.1', '>= 2.1.6'
+gem 'devise', '~> 4.9', '>= 4.9.3'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
