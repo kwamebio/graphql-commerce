@@ -22,19 +22,19 @@ module Types
     # They will be entry points for queries on your schema.
 
     # TODO: remove me
-    field :users, [Types::UserType], null: false, description: "Returns a list of users"
+    field :products, [Types::ProductType], null: false, description: "Returns a list of products"
 
-    def users
-      User.all
+    def products
+      Product.all
     end
 
-    field :user, Types::UserType, null: false, description: "Returns a single user" do
-      argument :id, ID, required: true
-    end
+    # field :product, Types::ProductType, null: false, description: "Returns a single product" do
+    #   argument :name, Name, required: true
+    # end
 
-      def user(id:)
-        User.find(id)
-      end
+      # def product(name:)
+      #   Product.find(name)
+      # end
   end
     
 
