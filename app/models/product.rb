@@ -6,4 +6,16 @@ class Product < ApplicationRecord
     has_many :images, dependent: :destroy
     
     validates :name, presence: true
+
+    scope :filter_by_name, -> (keyword) { where("name like ?", "%#{keyword}%") }
+    scope :above_or_equal_to_price, -> (price) { where("price >= ?", price) }
+
+    def self.search(params = {})
+        products = params[:product_ids].present? ? Product.find(params[:product_ids]) : Product.all
+        products = products.filter_by_name(params[:keyword]) if params[:keyword]
+        products = products.above_or_equal_to_price(params[:min_price].to_f) if params[:min_price]
+        products = products.below_or_equal_to_price(params[:max_price].to_f) if params[:max_price]
+
+        products
+    end
 end
