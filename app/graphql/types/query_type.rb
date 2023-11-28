@@ -46,6 +46,13 @@ module Types
       # def product(name:)
       #   Product.find(name)
       # end
+
+      field :orders, [Types::OrderType], null: false, description: "Returns a list of orders"
+
+      def orders 
+        Order.all
+      end
+
   end
     
 
