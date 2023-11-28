@@ -1,7 +1,8 @@
 class Product < ApplicationRecord
     belongs_to :user
    
-    has_many :orders
+    has_many :orders, through: :placements
+    has_many :placements, dependent: :destroy
     has_many :comments
     has_many :images, dependent: :destroy
     
