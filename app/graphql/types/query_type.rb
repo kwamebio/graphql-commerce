@@ -28,6 +28,17 @@ module Types
       Product.all
     end
 
+    field :products, [Types::ProductType], null: true do
+      description 'Find products based on price range or name'
+      argument :min_price, Float, required: false
+      argument :max_price, Float, required: false
+      argument :name, String, required: false
+    end
+
+    def products(min_price: nil, max_price: nil, name: nil)
+      Product.filtered(min_price, max_price, name)
+    end
+
     # field :product, Types::ProductType, null: false, description: "Returns a single product" do
     #   argument :name, Name, required: true
     # end
