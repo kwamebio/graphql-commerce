@@ -1,5 +1,5 @@
 module Types
-    class OrderTypes < BaseObject
+    class OrderType < BaseObject
         field :id, ID, null: false
         field :product, Types::ProductType, null: false
         field :user, Types::UserType, null: false
