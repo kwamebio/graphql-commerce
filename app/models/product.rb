@@ -5,6 +5,8 @@ class Product < ApplicationRecord
     has_many :placements, dependent: :destroy
     has_many :comments
     has_many :images, dependent: :destroy
+    has_many :items
+    has_many :orders, through: :items
     
     validates :name, presence: true
 
