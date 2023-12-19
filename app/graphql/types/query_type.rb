@@ -21,31 +21,31 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    # TODO: remove me
+    
     field :products, [Types::ProductType], null: false, description: "Returns a list of products"
 
     def products
       Product.all
     end
 
-    field :products, [Types::ProductType], null: true do
-      description 'Find products based on price range or name'
-      argument :min_price, Float, required: false
-      argument :max_price, Float, required: false
-      argument :name, String, required: false
-    end
-
-    def products(min_price: nil, max_price: nil, name: nil)
-      Product.filtered(min_price, max_price, name)
-    end
-
-    # field :product, Types::ProductType, null: false, description: "Returns a single product" do
-    #   argument :name, Name, required: true
+    # field :products, [Types::ProductType], null: true do
+    #   description 'Find products based on price range or name'
+    #   argument :min_price, Float, required: false
+    #   argument :max_price, Float, required: false
+    #   argument :name, String, required: false
     # end
 
-      # def product(name:)
-      #   Product.find(name)
-      # end
+    # def products(min_price: nil, max_price: nil, name: nil)
+    #   Product.filtered(min_price, max_price, name)
+    # end
+
+    field :product, Types::ProductType, null: false, description: "Returns a single product" do
+      argument :id, ID, required: true
+    end
+
+      def product(id:)
+        Product.find(id)
+      end
 
       field :orders, [Types::OrderType], null: false, description: "Returns a list of orders"
 
