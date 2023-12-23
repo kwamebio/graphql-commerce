@@ -10,8 +10,7 @@ class Product < ApplicationRecord
     
     validates :name, presence: true
 
-    scope :filter_by_name, -> (keyword) { where("name like ?", "%#{keyword}%") }
-    scope :above_or_equal_to_price, -> (price) { where("price >= ?", price) }
+    
 
     def self.search(params = {})
         products = params[:product_ids].present? ? Product.find(params[:product_ids]) : Product.all

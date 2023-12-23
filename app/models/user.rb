@@ -8,7 +8,7 @@ class User < ApplicationRecord
     
     validates :password, presence: true, length: { minimum: 6 }
 
-    scope :active, -> { where(active: true) }
+
 
 
     def token_expired?
