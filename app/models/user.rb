@@ -1,10 +1,10 @@
 class User < ApplicationRecord
     has_secure_password
 
-    has_many :sessions, dependent: :destroy
-    has_many :products, dependent: :destroy
-    has_many :comments, dependent: :destroy
-    has_many :orders, dependent: :destroy
+    # has_many :sessions, dependent: :destroy
+    # has_many :products, dependent: :destroy
+    # has_many :comments, dependent: :destroy
+    # has_many :orders, dependent: :destroy
     
     validates :password, presence: true, length: { minimum: 6 }
 
