@@ -15,10 +15,10 @@ class User < ApplicationRecord
         token_expiration_date&.past?
     end
 
-    # def token
-    #     session = sessions.create!(token: SecureRandom.hex(64), expiration_date: Time.now + 4.hours)
-    #     session.token
-    # end
+    def token
+        session = sessions.create!(token: SecureRandom.hex(64), expiration_date: Time.now + 4.hours)
+        session.token
+    end
 
     
 end
